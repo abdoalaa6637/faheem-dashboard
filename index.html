@@ -1,67 +1,36 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Faheem | Ads Performance</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root { --bg:#f4f6fa; --ink:#0f172a; --accent:#2dd4bf; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; height:100%; font-family:'Cairo', system-ui, sans-serif; background:var(--bg); color:var(--ink); }
-    .app { display:flex; flex-direction:column; height:100%; }
-    header { display:flex; align-items:center; justify-content:space-between; gap:16px;
-             padding:10px 20px; background:var(--ink); color:#fff; }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px; }
-    .dot { width:10px; height:10px; border-radius:50%; background:var(--accent);
-           box-shadow:0 0 0 4px rgba(45,212,191,.25); }
-    .sub { font-weight:400; font-size:13px; opacity:.7; }
-    .actions { display:flex; gap:8px; }
-    button { font-family:inherit; font-size:13px; color:#fff; background:rgba(255,255,255,.1);
-             border:1px solid rgba(255,255,255,.2); border-radius:8px; padding:6px 14px; cursor:pointer; }
-    button:hover { background:rgba(255,255,255,.2); }
-    main { flex:1; padding:12px; min-height:0; }
-    .frame { position:relative; width:100%; height:100%; background:#fff; border-radius:14px;
-             overflow:hidden; box-shadow:0 4px 24px rgba(15,23,42,.08); }
-    iframe { width:100%; height:100%; border:0; }
-    .loader { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-              flex-direction:column; gap:12px; background:#fff; color:#64748b; transition:opacity .4s; }
-    .loader.hide { opacity:0; pointer-events:none; }
-    .spin { width:34px; height:34px; border:3px solid #e2e8f0; border-top-color:#0f766e;
-            border-radius:50%; animation:s 0.8s linear infinite; }
-    @keyframes s { to { transform:rotate(360deg); } }
-    @media (max-width:600px) { .sub { display:none; } main { padding:6px; } }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Channels Ads Performance Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  html,body{margin:0;height:100%;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#fff7ed}
+  .app{display:flex;flex-direction:column;height:100%;padding:14px;gap:12px;box-sizing:border-box}
+  .hero{background:linear-gradient(120deg,#ea580c,#f97316 60%,#c2410c);color:#fff;border-radius:20px;
+        padding:20px 28px;display:flex;justify-content:space-between;align-items:center;
+        box-shadow:0 10px 30px rgba(234,88,12,.25)}
+  .pill{background:rgba(255,255,255,.2);border-radius:999px;padding:3px 12px;font-size:12px;font-weight:600}
+  h1{margin:8px 0 0;font-size:26px;font-weight:800;letter-spacing:-.5px}
+  button{font:inherit;font-size:13px;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);
+         border-radius:10px;padding:8px 16px;cursor:pointer}
+  .frame{flex:1;min-height:0;background:#fff;border-radius:18px;overflow:hidden;
+         box-shadow:0 1px 3px rgba(15,23,42,.08),0 8px 24px rgba(15,23,42,.06);border:1px solid #fed7aa}
+  iframe{width:100%;height:100%;border:0}
+</style>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <div class="brand">
-        <span class="dot"></span>
-        <div>Faheem — Ads Performance <div class="sub">Live dashboard</div></div>
-      </div>
-      <div class="actions">
-        <button id="refresh">تحديث</button>
-        <button id="full">ملء الشاشة</button>
-      </div>
-    </header>
-    <main>
-      <div class="frame" id="frame">
-        <div class="loader" id="loader"><div class="spin"></div>جاري تحميل الداشبورد…</div>
-        <iframe id="report"
-          src="https://datastudio.google.com/embed/reporting/5619339b-55ab-4fff-a723-32c7aecfd815/page/p_b2kp23pk7d"
-          allowfullscreen
-          sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
-        </iframe>
-      </div>
-    </main>
+<div class="app">
+  <div class="hero">
+    <div><span class="pill">Live Performance Reporting</span><h1>Channels Ads Performance Dashboard</h1></div>
+    <button onclick="document.getElementById('r').requestFullscreen()">Fullscreen</button>
   </div>
-  <script>
-    const f = document.getElementById('report'), l = document.getElementById('loader');
-    f.addEventListener('load', () => l.classList.add('hide'));
-    document.getElementById('refresh').onclick = () => { l.classList.remove('hide'); f.src = f.src; };
-    document.getElementById('full').onclick = () => document.getElementById('frame').requestFullscreen();
-  </script>
+  <div class="frame">
+    <iframe id="r" allowfullscreen
+      src="https://datastudio.google.com/embed/reporting/5619339b-55ab-4fff-a723-32c7aecfd815/page/p_b2kp23pk7d"
+      sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+  </div>
+</div>
 </body>
 </html>
